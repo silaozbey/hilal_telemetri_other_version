@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaziantep Üniversitesi - Yazılım ve Yapay Zeka Topluluğu Telemetri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>GAZİÜNİV // TELEMETRİ SİSTEMİ</h1>
+        
+        <div class="mode-toggle-container">
+            <span class="mode-label active" id="lbl-race">YARIŞ</span>
+            <label class="switch">
+                <input type="checkbox" id="mode-checkbox">
+                <span class="slider"></span>
+            </label>
+            <span class="mode-label" id="lbl-garage">GARAJ</span>
+        </div>
+    </div>
+
+    <div class="garage-panel" id="garaj-kontrol-paneli" style="display: none;">
+        <div id="baglanti-grup" class="port-group">
+            <select class="port-select" id="port-listesi">
+                <option value="">Port Seçin...</option>
+            </select>
+            <button class="btn btn-refresh" id="btn-yenile" title="Portları Yenile">🔄 Yenile</button>
+            <button class="btn btn-connect" id="btn-baglan">BAĞLAN</button>
+        </div>
+        
+        <div class="garage-stats">
+            <div>| SAKLANAN PAKET: <span id="stat-paket" style="color:#eab308; font-weight:bold;">0</span></div>
+            <div>| SON PAKET: <span id="stat-raw" style="color:#38bdf8;">-</span></div>
+        </div>
+
+        <div class="status-badge status-disconnected" id="sim-status">BAĞLANTI YOK</div>
+    </div>
+
+    <div class="telemetry-grid">
+        <div class="telemetry-card">
+            <span class="card-label">SİSTEM ÇALIŞMA SÜRESİ</span>
+            <div class="chrono-container" id="sure-deger">0 ms</div>
+            <span style="font-size: 11px; color: #475569;">BİRİM: MILISANIYE</span>
+        </div>
+
+        <div class="telemetry-card">
+            <span class="card-label">ARAÇ HIZI</span>
+            <div class="gauge-wrapper">
+                <div class="gauge-bg-arc"></div>
+                <div class="gauge-color-arc" id="hiz-ibe"></div> <div class="gauge-value-text" id="hiz-deger">0</div>
+            </div>
+            <span style="font-size: 11px; color: #00f0ff; font-weight: bold;">KM/H</span>
+        </div>
+
+        <div class="telemetry-card" style="min-height: 250px;">
+            <span class="card-label">BATARYA SICAKLIĞI</span>
+            <div class="thermometer-wrapper">
+                <div class="thermometer-fill" id="temp-fill"></div>
+                <div class="thermometer-bulb"></div>
+            </div>
+            <div style="font-size: 26px; font-weight: bold; color: #f97316; margin-top: 15px;" id="sicaklik-deger">0.0 °C</div>
+        </div>
+
+        <div class="telemetry-card">
+            <span class="card-label">BATARYA GERİLİMİ</span>
+            <div class="volt-display-box">
+                <p class="volt-value" id="voltaj-deger">0.00 V</p>
+            </div>
+            <span style="font-size: 11px; color: #eab308;">ANLIK VOLTAJ OKUMA</span>
+        </div>
+
+        <div class="telemetry-card">
+            <span class="card-label">KALAN ENERJİ</span>
+            <div class="battery-container">
+                <div class="battery-core-fill" id="enerji-fill"></div>
+                <div class="battery-cap"></div>
+            </div>
+            <div class="battery-text" id="enerji-deger">0 WH</div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+:root {
+    --bg-color: #060709;
+    --card-bg: #11141a;
+    --border-color: #1e293b;
+    --text-color: #e2e8f0;
+}
+
+body.garage-active {
+    --bg-color: #0b0f19;
+    --card-bg: #161c28;
+    --border-color: #334155;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 25px;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+.header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header h1 {
+    color: #38bdf8;
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.mode-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #11141a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #1e293b;
+}
+
+.mode-label { font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+.mode-label.active { color: #38bdf8; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+.switch { position: relative; display: inline-block; width: 44px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ef4444; transition: .3s; border-radius: 22px;
+}
+.slider:before {
+    position: absolute; content: ""; height: 16px; width: 16px;
+    left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%;
+}
+input:checked + .slider { background-color: #eab308; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+.garage-panel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(22, 28, 40, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    width: 100%;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.port-group { display: flex; align-items: center; gap: 8px; }
+
+.port-select {
+    background: #060709;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    outline: none;
+}
+
+.btn {
+    font-family: inherit;
+    font-weight: bold;
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+.btn-connect { background-color: #22c55e; color: #ffffff; }
+.btn-connect:hover { background-color: #16a34a; }
+.btn-disconnect { background-color: #ef4444; color: #ffffff; }
+.btn-disconnect:hover { background-color: #dc2626; }
+
+.btn-refresh { background-color: #475569; color: white; padding: 6px 10px; }
+.btn-refresh:hover { background-color: #64748b; }
+
+.status-badge { padding: 5px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: auto; }
+.status-disconnected { background-color: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; }
+.status-connected { background-color: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; color: #22c55e; }
+
+.garage-stats { display: flex; gap: 20px; font-size: 12px; color: #94a3b8; }
+
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.telemetry-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 220px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.card-label {
+    font-size: 11px; color: #64748b; letter-spacing: 1px;
+    text-transform: uppercase; text-align: center; margin-bottom: 15px; width: 100%;
+}
+
+.chrono-container {
+    background-color: #090d16; border: 2px solid #a855f7; padding: 12px 24px;
+    border-radius: 8px; color: #c084fc; font-size: 32px; font-weight: bold;
+    box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.gauge-wrapper { position: relative; width: 140px; height: 70px; overflow: hidden; }
+.gauge-bg-arc { position: absolute; width: 140px; height: 140px; border: 12px solid var(--border-color); border-radius: 50%; box-sizing: border-box; }
+
+/* 🚗 HIZ KADRANI: Mavi neon kısım artık soldan sağa doğru dolacak */
+.gauge-color-arc {
+    position: absolute; width: 140px; height: 140px; border: 12px solid #00f0ff;
+    border-radius: 50%; box-sizing: border-box; 
+    border-color: transparent transparent #00f0ff #00f0ff; 
+    transform: rotate(-45deg); 
+    transition: transform 0.2s ease;
+}
+.gauge-value-text { position: absolute; bottom: 0; width: 100%; text-align: center; font-size: 26px; font-weight: bold; }
+
+.thermometer-wrapper {
+    display: flex; align-items: flex-end; height: 100px; width: 25px;
+    background-color: #0f172a; border: 2px solid var(--border-color); border-radius: 15px;
+    position: relative; padding: 3px; box-sizing: border-box;
+}
+.thermometer-fill { width: 100%; height: 0%; background: linear-gradient(0deg, #3b82f6 0%, #f97316 60%, #ef4444 100%); border-radius: 10px; transition: height 0.3s ease; }
+.thermometer-bulb { width: 35px; height: 35px; background-color: #ef4444; border-radius: 50%; position: absolute; bottom: -20px; left: -7px; border: 2px solid var(--border-color); z-index: 2; }
+
+.volt-display-box { background: #161b26; border-right: 3px solid #eab308; padding: 15px; border-radius: 6px; text-align: center; width: 80%; }
+.volt-value { font-size: 32px; font-weight: bold; color: #eab308; margin: 0; }
+
+.battery-container { width: 110px; height: 55px; border: 4px solid #475569; border-radius: 8px; position: relative; padding: 3px; box-sizing: border-box; }
+.battery-cap { position: absolute; right: -10px; top: 15px; width: 6px; height: 18px; background-color: #475569; border-radius: 0 4px 4px 0; }
+.battery-core-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #22c55e, #4ade80); border-radius: 3px; transition: width 0.3s ease; }
+.battery-text { font-size: 18px; font-weight: bold; margin-top: 8px; }
